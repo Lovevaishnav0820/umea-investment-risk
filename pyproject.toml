@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "umea-investment-risk"
+version = "1.2.0"
+description = "Monte Carlo study of Swedish investment accounts (ISK and depå) under 2026 tax rules"
+requires-python = ">=3.13"
+# Exact versions used for the reference results are pinned in requirements-lock.txt.
+dependencies = ["numpy", "matplotlib", "reportlab", "pypdf", "pillow"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

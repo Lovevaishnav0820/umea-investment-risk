@@ -1,0 +1,141 @@
+{
+  "run_started_utc": "2026-10-14T07:41:26.200414+00:00",
+  "software_version": "1.2.0",
+  "python": "3.13.5 (main, Jul 23 2025, 00:37:22) [Clang 20.1.4 ]",
+  "platform": "Linux-6.18.44-fc-v114-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "dependencies": {
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "pytest": "9.1.1",
+    "reportlab": "5.0.1",
+    "pypdf": "6.20.1",
+    "pillow": "12.3.0"
+  },
+  "input_sha256": {
+    "experiment_config.json": "57393d6feb0547beba5c6869f9058094c65a4e2b93fc39dc95116272a280a080",
+    "benchmark_fixtures.json": "1852b8887ac25f2b824b106ec722491490a150c455c6617e71a59100787d1d4f"
+  },
+  "seeds": {
+    "primary_innovations": 20261012,
+    "bootstrap_indices": 20261013,
+    "diagnostic_path_selection": 20261014,
+    "independent_baseline_check": 20261015
+  },
+  "diagnostic_path_ids": [
+    2319,
+    3406,
+    9534,
+    11873,
+    13368,
+    15642
+  ],
+  "price_models": [
+    {
+      "m": 0.06,
+      "sigma": 0.25,
+      "S0": 100.0,
+      "shape": [
+        20000,
+        25
+      ],
+      "dtype": "float64",
+      "raw_sha256": "dbd5861bf82ad9fec600d31dfcbbd9bef76db6aef44a0152f8f6df0420b09b8d"
+    },
+    {
+      "m": 0.03,
+      "sigma": 0.15,
+      "S0": 100.0,
+      "shape": [
+        20000,
+        25
+      ],
+      "dtype": "float64",
+      "raw_sha256": "e6b90afe7a8cc3101ac637be19ca96b9112e68ac3e70ed48b73dad70bf48b88e"
+    },
+    {
+      "m": 0.03,
+      "sigma": 0.25,
+      "S0": 100.0,
+      "shape": [
+        20000,
+        25
+      ],
+      "dtype": "float64",
+      "raw_sha256": "86fa22922a23d3c083365d7294d19d070bbbdcf7af700746386a9ac8e5982b63"
+    },
+    {
+      "m": 0.03,
+      "sigma": 0.35,
+      "S0": 100.0,
+      "shape": [
+        20000,
+        25
+      ],
+      "dtype": "float64",
+      "raw_sha256": "27ab6769f8cb2e773598578d64f46d2de958e8a2f16b43ce8d2e6892f65b8e6f"
+    },
+    {
+      "m": 0.06,
+      "sigma": 0.15,
+      "S0": 100.0,
+      "shape": [
+        20000,
+        25
+      ],
+      "dtype": "float64",
+      "raw_sha256": "942f4ab00ec10bcc56a91ed64a1ef6c28e17a8263d42ab008397a6faf3e72fd7"
+    },
+    {
+      "m": 0.06,
+      "sigma": 0.35,
+      "S0": 100.0,
+      "shape": [
+        20000,
+        25
+      ],
+      "dtype": "float64",
+      "raw_sha256": "e30699eb7c2ab6ffdfe4de7a91b64214d4fb8536b3620025ad930975c9516c80"
+    },
+    {
+      "m": 0.09,
+      "sigma": 0.15,
+      "S0": 100.0,
+      "shape": [
+        20000,
+        25
+      ],
+      "dtype": "float64",
+      "raw_sha256": "a461f2ffd6108efec2c6e8140f491f3a95b0cfd4225a773bc3d3da7bf666c405"
+    },
+    {
+      "m": 0.09,
+      "sigma": 0.25,
+      "S0": 100.0,
+      "shape": [
+        20000,
+        25
+      ],
+      "dtype": "float64",
+      "raw_sha256": "469a08cfd34379d0825172d71e5d077034d9eed86a6a3422fd9960b82d358687"
+    },
+    {
+      "m": 0.09,
+      "sigma": 0.35,
+      "S0": 100.0,
+      "shape": [
+        20000,
+        25
+      ],
+      "dtype": "float64",
+      "raw_sha256": "fa0b058f6b1befbdb48e8ad766db696ae72961ac0d7001f41d3679467b7bc9a6"
+    }
+  ],
+  "measured_accounting_residual": {
+    "max_absolute_residual_sek": 9.313225746154785e-10,
+    "note": "Measured in this run and environment; floating-point residuals can differ across platforms."
+  },
+  "run_finished_utc": "2026-10-14T07:43:47.025053+00:00",
+  "seconds": 140.82652549499994,
+  "status": "passed"
+}

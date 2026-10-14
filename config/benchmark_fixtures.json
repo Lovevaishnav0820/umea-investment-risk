@@ -1,0 +1,2733 @@
+{
+  "fixture_schema_version": 1,
+  "description": "Hand-worked reference values for unit and full-path tests. These are independent arithmetic examples, not simulation output. Each entry links to its derivation in docs/MATHEMATICAL_MODEL.md.",
+  "defaults": "experiment_config.json baseline; each full path also embeds resolved parameters",
+  "units": {
+    "prices": "SEK_per_share",
+    "shares": "shares",
+    "money": "SEK",
+    "rates_returns_losses_es": "decimal_fraction",
+    "month": "integer_index",
+    "year": "model_year_1_or_2"
+  },
+  "tolerances": {
+    "money_atol_sek": 1e-08,
+    "shares_atol": 1e-12,
+    "dimensionless_atol": 1e-12,
+    "relative_tolerance": 1e-10,
+    "discrete_values": "exact"
+  },
+  "unit_fixtures": [
+    {
+      "id": "tax_01",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          20000,
+          -20000
+        ],
+        "credit_capacity_sek": null,
+        "tax_mode": "sweden2026"
+      },
+      "expected": {
+        "signed_tax_sek": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "tax_02",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          20000,
+          -10000
+        ],
+        "credit_capacity_sek": null,
+        "tax_mode": "sweden2026"
+      },
+      "expected": {
+        "signed_tax_sek": 3000
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "tax_03",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          -100000
+        ],
+        "credit_capacity_sek": null,
+        "tax_mode": "sweden2026"
+      },
+      "expected": {
+        "signed_tax_sek": -21000
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "tax_04",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          -200000
+        ],
+        "credit_capacity_sek": null,
+        "tax_mode": "sweden2026"
+      },
+      "expected": {
+        "signed_tax_sek": -38400
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "tax_05",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          -500000
+        ],
+        "credit_capacity_sek": null,
+        "tax_mode": "sweden2026"
+      },
+      "expected": {
+        "signed_tax_sek": -82500
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "tax_06",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          -200000
+        ],
+        "credit_capacity_sek": 20000,
+        "tax_mode": "sweden2026"
+      },
+      "expected": {
+        "signed_tax_sek": -20000
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "tax_07",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          -200000
+        ],
+        "credit_capacity_sek": 0,
+        "tax_mode": "sweden2026"
+      },
+      "expected": {
+        "signed_tax_sek": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "tax_kink",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          -142857.14285714287
+        ],
+        "credit_capacity_sek": null,
+        "tax_mode": "sweden2026"
+      },
+      "expected": {
+        "signed_tax_sek": -30000
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "tax_symmetric",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          -200000
+        ],
+        "credit_capacity_sek": null,
+        "tax_mode": "symmetric30"
+      },
+      "expected": {
+        "signed_tax_sek": -60000
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "tax_none",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          20000
+        ],
+        "credit_capacity_sek": null,
+        "tax_mode": "none"
+      },
+      "expected": {
+        "signed_tax_sek": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "tax_no_deficit_threshold",
+      "kind": "annual_ad_tax",
+      "inputs": {
+        "gains_sek": [
+          -200000.0
+        ],
+        "credit_capacity_sek": null,
+        "tax_mode": "sweden2026_no_deficit_threshold"
+      },
+      "expected": {
+        "signed_tax_sek": -42000.0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "capacity_annual_reset",
+      "kind": "two_annual_assessments",
+      "inputs": {
+        "annual_net_gains_sek": [
+          -200000,
+          -200000
+        ],
+        "credit_capacity_sek": 20000,
+        "tax_mode": "sweden2026"
+      },
+      "expected": {
+        "signed_taxes_sek": [
+          -20000,
+          -20000
+        ]
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-tax",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "average_basis_after_two_buys_and_partial_sale",
+      "kind": "trade_sequence",
+      "inputs": {
+        "initial_buys": [
+          {
+            "shares": 100,
+            "price": 10,
+            "cost_per_leg": 0.01
+          },
+          {
+            "shares": 100,
+            "price": 20,
+            "cost_per_leg": 0.01
+          }
+        ],
+        "sale": {
+          "shares": 50,
+          "price": 30,
+          "cost_per_leg": 0.01
+        },
+        "allow_20pct_proceeds_deduction": true
+      },
+      "expected": {
+        "expected_before_sale": {
+          "shares": 200,
+          "actual_basis": 3030
+        },
+        "expected_after_sale": {
+          "net_sale_proceeds": 1485,
+          "actual_basis_removed": 757.5,
+          "deduction_selected": 757.5,
+          "taxable_gain": 727.5,
+          "remaining_shares": 150,
+          "remaining_actual_basis": 2272.5
+        }
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-trades",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "alternative_deduction_does_not_rewrite_basis",
+      "kind": "trade_sequence",
+      "inputs": {
+        "initial_shares": 100,
+        "initial_actual_basis": 1000,
+        "sale": {
+          "shares": 10,
+          "price": 100,
+          "cost_per_leg": 0
+        },
+        "allow_20pct_proceeds_deduction": true
+      },
+      "expected": {
+        "expected_after_sale": {
+          "net_sale_proceeds": 1000,
+          "actual_basis_removed": 100,
+          "deduction_selected": 200,
+          "taxable_gain": 800,
+          "remaining_shares": 90,
+          "remaining_actual_basis": 900
+        }
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-trades",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "budget_buy_and_full_sale",
+      "kind": "trade_sequence",
+      "inputs": {
+        "initial_cash_sek": 101,
+        "buy_budget_sek": 101,
+        "buy_price": 10,
+        "sale_price": 10,
+        "cost_per_leg": 0.01,
+        "sell_all": true,
+        "allow_20pct_proceeds_deduction": true
+      },
+      "expected": {
+        "after_buy": {
+          "shares": 10,
+          "actual_basis": 101,
+          "cash": 0,
+          "fee": 1
+        },
+        "after_sale": {
+          "shares": 0,
+          "actual_basis": 0,
+          "cash": 99,
+          "gain": -2,
+          "fee": 1
+        },
+        "fees_total": 2
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-trades",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "zero_quantity_sale",
+      "kind": "sale",
+      "inputs": {
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "sell_quantity": 0,
+        "price": 100,
+        "cost_per_leg": 0.001
+      },
+      "expected": {
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "gain": 0,
+        "fee": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-trades",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "zero_cost_reset",
+      "kind": "sell_rebuy",
+      "inputs": {
+        "shares": 1,
+        "actual_basis": 100,
+        "cash": 0,
+        "price": 80,
+        "cost_per_leg": 0
+      },
+      "expected": {
+        "shares": 1,
+        "actual_basis": 80,
+        "cash": 0,
+        "realized_gain": -20,
+        "fees_total": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-trades",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "isk_base_1",
+      "kind": "isk_assessment",
+      "inputs": {
+        "quarter_values_sek": [
+          0,
+          500000,
+          500000,
+          500000
+        ],
+        "deposits_sek": 500000,
+        "rate": 0.01065,
+        "allowance_sek": 300000
+      },
+      "expected": {
+        "base_sek": 500000,
+        "signed_tax_sek": 2130
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-isk",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "isk_base_2",
+      "kind": "isk_assessment",
+      "inputs": {
+        "quarter_values_sek": [
+          0,
+          100000,
+          100000,
+          100000
+        ],
+        "deposits_sek": 100000,
+        "rate": 0.01065,
+        "allowance_sek": 300000
+      },
+      "expected": {
+        "base_sek": 100000,
+        "signed_tax_sek": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-isk",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "isk_cash_included",
+      "kind": "isk_snapshot",
+      "inputs": {
+        "shares": 10,
+        "price": 100,
+        "cash_sek": 250
+      },
+      "expected": {
+        "snapshot_value_sek": 1250
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-isk",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "atom_at_var",
+      "kind": "empirical_es",
+      "inputs": {
+        "losses": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "alpha": 0.95
+      },
+      "expected": {
+        "es": 0.8
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-es",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "fractional_boundary",
+      "kind": "empirical_es",
+      "inputs": {
+        "losses": [
+          0.0,
+          1.0,
+          2.0,
+          3.0
+        ],
+        "alpha": 0.625
+      },
+      "expected": {
+        "es": 2.6666666666666665
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-es",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "negative_losses_remain_negative",
+      "kind": "empirical_es",
+      "inputs": {
+        "losses": [
+          -0.4,
+          -0.3,
+          -0.2,
+          -0.1
+        ],
+        "alpha": 0.5
+      },
+      "expected": {
+        "es": -0.15
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-es",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "es_difference_not_difference_es",
+      "kind": "es_contrast",
+      "inputs": {
+        "loss_a": [
+          0,
+          2
+        ],
+        "loss_b": [
+          2,
+          0
+        ],
+        "alpha": 0.5
+      },
+      "expected": {
+        "es_a": 2,
+        "es_b": 2,
+        "difference_of_es": 0,
+        "es_of_paired_loss_difference": 2
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-es",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "paired_bootstrap_toy",
+      "kind": "paired_resamples",
+      "inputs": {
+        "return_a": [
+          0.1,
+          0.2
+        ],
+        "return_b": [
+          0.05,
+          0.25
+        ],
+        "row_draws": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "alpha": 0.95,
+        "percentile_method": "linear"
+      },
+      "expected": {
+        "mean_difference_draws": [
+          0.05,
+          -0.05,
+          0
+        ],
+        "es_difference_draws": [
+          -0.05,
+          0.05,
+          -0.05
+        ],
+        "mean_difference_percentile_interval": [
+          -0.0475,
+          0.0475
+        ]
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-es",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "break_even_asymmetric",
+      "kind": "break_even",
+      "inputs": {
+        "tau": 0.3,
+        "lambda": 0.21
+      },
+      "expected": {
+        "terminal_to_refund_price_ratio": 1.6122448979591837
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-reinvestment",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "benchmark_cash_refund",
+      "kind": "analytical_cash_refund",
+      "inputs": {
+        "b": 100,
+        "p": 80,
+        "z": 100,
+        "lambda": 0.21,
+        "tau": 0.3
+      },
+      "expected": {
+        "credit": 4.2,
+        "terminal_gains_tax": 6,
+        "terminal_net_outcome": 98.2,
+        "hold_net_outcome": 100
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-reinvestment",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "threshold_equality",
+      "kind": "harvest_trigger",
+      "inputs": {
+        "shares": 1,
+        "basis": 100,
+        "price": 95,
+        "cost_per_leg": 0,
+        "threshold": 0.05
+      },
+      "expected": {
+        "trigger": false
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-threshold",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "threshold_strict_loss",
+      "kind": "harvest_trigger",
+      "inputs": {
+        "shares": 1,
+        "basis": 100,
+        "price": 94.999999,
+        "cost_per_leg": 0,
+        "threshold": 0.05
+      },
+      "expected": {
+        "trigger": true
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-threshold",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "flat_price_fee_loss",
+      "kind": "harvest_trigger",
+      "inputs": {
+        "shares": 0.9990009990009991,
+        "basis": 100,
+        "price": 100,
+        "cost_per_leg": 0.001,
+        "threshold": 0
+      },
+      "expected": {
+        "net_sale_proceeds": 99.80019980019982,
+        "trigger": true
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-threshold",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "funding_open_account",
+      "kind": "positive_bill",
+      "inputs": {
+        "bill": 100,
+        "cash": 20,
+        "shares": 4,
+        "basis": null,
+        "price": 10,
+        "cost_per_leg": 0,
+        "bank": 0,
+        "external_funding": 0,
+        "strategy": "ISK_HOLD",
+        "account_open": true
+      },
+      "expected": {
+        "shares_sold": 4,
+        "cash": 0,
+        "shares": 0,
+        "external_funding": 40,
+        "funding_failure": true,
+        "account_open": false,
+        "signed_bill_settled": 100
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-funding",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "funding_closed_account",
+      "kind": "positive_bill",
+      "inputs": {
+        "bill": 100,
+        "cash": 0,
+        "shares": 0,
+        "basis": null,
+        "price": 10,
+        "cost_per_leg": 0,
+        "bank": 20,
+        "external_funding": 0,
+        "strategy": "ISK_HOLD",
+        "account_open": false
+      },
+      "expected": {
+        "bank": 0,
+        "external_funding": 80,
+        "funding_failure": true,
+        "account_open": false,
+        "signed_bill_settled": 100
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-funding",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "funding_exact_exhaustion",
+      "kind": "positive_bill",
+      "inputs": {
+        "bill": 40,
+        "cash": 0,
+        "shares": 4,
+        "basis": null,
+        "price": 10,
+        "cost_per_leg": 0,
+        "bank": 0,
+        "external_funding": 0,
+        "strategy": "ISK_HOLD",
+        "account_open": true
+      },
+      "expected": {
+        "shares_sold": 4,
+        "shares": 0,
+        "cash": 0,
+        "external_funding": 0,
+        "funding_failure": false,
+        "account_open": false
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-funding",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "gbm_expected_terminal",
+      "kind": "price_moments",
+      "inputs": {
+        "initial_price": 100,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "months": 24
+      },
+      "expected": {
+        "expected_price_12": 106,
+        "expected_price_24": 112.36,
+        "annual_log_drift": 0.058268908123975775,
+        "monthly_log_mean": 0.002251575676997981,
+        "monthly_log_variance": 0.005208333333333333
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-moments",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    }
+  ],
+  "full_path_fixtures": [
+    {
+      "id": "asymmetric_refund_reinvested",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "settlement_lag_months": 6
+      },
+      "strategy": "AD_HARVEST",
+      "expected": {
+        "year1_tax": -4.2,
+        "shares_after_credit": 1.0525,
+        "basis_after_credit": 84.2,
+        "year2_tax": 6.315,
+        "terminal_net_outcome": 98.935,
+        "external_funding": 0,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0,
+        "harvested": true,
+        "fees_total": 0,
+        "price_pnl": 1.05,
+        "shares_end_month12": 1,
+        "basis_end_month12": 80,
+        "shares_end_month17": 1,
+        "credit_receipts_months": [
+          18
+        ]
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "units_ref": "units",
+      "tolerance_ref": "tolerances",
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-reinvestment"
+    },
+    {
+      "id": "passive_recovery",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "settlement_lag_months": 6
+      },
+      "strategy": "AD_HOLD",
+      "expected": {
+        "year1_tax": 0,
+        "year2_tax": 0,
+        "terminal_net_outcome": 100,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0,
+        "external_funding": 0,
+        "harvested": false,
+        "fees_total": 0,
+        "price_pnl": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "units_ref": "units",
+      "tolerance_ref": "tolerances",
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-reinvestment"
+    },
+    {
+      "id": "credit_at_terminal_no_reinvestment",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "settlement_lag_months": 12
+      },
+      "strategy": "AD_HARVEST",
+      "expected": {
+        "year1_tax": -4.2,
+        "year2_tax": 6,
+        "terminal_net_outcome": 98.2,
+        "tax_due_months": [
+          24,
+          36
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0,
+        "external_funding": 0,
+        "harvested": true,
+        "fees_total": 0,
+        "price_pnl": 0.0,
+        "shares_before_liquidation_month24": 1,
+        "buy_count_month24": 0,
+        "credit_receipts_months": [
+          24
+        ]
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 12,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "units_ref": "units",
+      "tolerance_ref": "tolerances",
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-reinvestment"
+    },
+    {
+      "id": "symmetric_refund_reinvested",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "settlement_lag_months": 6,
+        "tax_mode": "symmetric30"
+      },
+      "strategy": "AD_HARVEST",
+      "expected": {
+        "year1_tax": -6,
+        "shares_after_credit": 1.075,
+        "basis_after_credit": 86,
+        "year2_tax": 6.45,
+        "terminal_net_outcome": 101.05,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0,
+        "external_funding": 0,
+        "harvested": true,
+        "fees_total": 0,
+        "price_pnl": 1.5
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "symmetric30",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "units_ref": "units",
+      "tolerance_ref": "tolerances",
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-reinvestment"
+    },
+    {
+      "id": "lower_price_at_refund",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "settlement_lag_months": 6
+      },
+      "strategy": "AD_HARVEST",
+      "expected": {
+        "year1_tax": -4.2,
+        "shares_after_credit": 1.07,
+        "basis_after_credit": 84.2,
+        "year2_tax": 6.84,
+        "terminal_net_outcome": 100.16,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0,
+        "external_funding": 0,
+        "harvested": true,
+        "fees_total": 0,
+        "price_pnl": 2.8
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "units_ref": "units",
+      "tolerance_ref": "tolerances",
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-reinvestment"
+    },
+    {
+      "id": "continuing_decline_harvest",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        70.0,
+        70.0,
+        70.0,
+        70.0,
+        70.0,
+        70.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "settlement_lag_months": 6
+      },
+      "strategy": "AD_HARVEST",
+      "expected": {
+        "year1_tax": -4.2,
+        "shares_after_credit": 1.06,
+        "basis_after_credit": 84.2,
+        "year2_tax": -4.326,
+        "terminal_net_outcome": 67.926,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0,
+        "external_funding": 0,
+        "harvested": true,
+        "fees_total": 0,
+        "price_pnl": -40.6
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "units_ref": "units",
+      "tolerance_ref": "tolerances",
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-reinvestment"
+    },
+    {
+      "id": "continuing_decline_hold",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        70.0,
+        70.0,
+        70.0,
+        70.0,
+        70.0,
+        70.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "settlement_lag_months": 6
+      },
+      "strategy": "AD_HOLD",
+      "expected": {
+        "year1_tax": 0,
+        "year2_tax": -8.4,
+        "terminal_net_outcome": 68.4,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0,
+        "external_funding": 0,
+        "harvested": false,
+        "fees_total": 0,
+        "price_pnl": -40.0
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "units_ref": "units",
+      "tolerance_ref": "tolerances",
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-reinvestment"
+    },
+    {
+      "id": "flat_isk_lag6",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "overrides": {
+        "cost_per_leg": 0,
+        "settlement_lag_months": 6
+      },
+      "strategy": "ISK_HOLD",
+      "expected": {
+        "year1_base": 500000,
+        "year1_tax": 2130,
+        "year2_base": 498935,
+        "year2_tax": 2118.65775,
+        "terminal_net_outcome": 495751.34225,
+        "external_funding": 0,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0,
+        "harvested": false,
+        "fees_total": 0,
+        "price_pnl": 0.0,
+        "year1_snapshots": [
+          0,
+          500000,
+          500000,
+          500000
+        ],
+        "year2_snapshots": [
+          500000,
+          500000,
+          497870,
+          497870
+        ],
+        "year1_deposits": 500000,
+        "year2_deposits": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "units_ref": "units",
+      "tolerance_ref": "tolerances",
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-isk"
+    },
+    {
+      "id": "flat_isk_lag0",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "overrides": {
+        "cost_per_leg": 0,
+        "settlement_lag_months": 0
+      },
+      "strategy": "ISK_HOLD",
+      "expected": {
+        "year1_base": 500000,
+        "year1_tax": 2130,
+        "year2_base": 497870,
+        "year2_tax": 2107.3155,
+        "terminal_net_outcome": 495762.6845,
+        "external_funding": 0,
+        "tax_due_months": [
+          12,
+          24
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0,
+        "harvested": false,
+        "fees_total": 0,
+        "price_pnl": 0.0,
+        "year1_snapshots": [
+          0,
+          500000,
+          500000,
+          500000
+        ],
+        "year2_snapshots": [
+          497870,
+          497870,
+          497870,
+          497870
+        ],
+        "year1_deposits": 500000,
+        "year2_deposits": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 0,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "units_ref": "units",
+      "tolerance_ref": "tolerances",
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-isk"
+    },
+    {
+      "id": "isk_positive_prices_negative_net_outcome",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2
+      ],
+      "overrides": {
+        "cost_per_leg": 0,
+        "settlement_lag_months": 6
+      },
+      "strategy": "ISK_HOLD",
+      "expected": {
+        "year1_base": 500000,
+        "year1_tax": 2130,
+        "year2_base": 500,
+        "year2_tax": 0,
+        "funding_failure_month": 18,
+        "external_funding": 1130,
+        "terminal_net_outcome": -1130,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0,
+        "harvested": false,
+        "fees_total": 0,
+        "price_pnl": -499000.0,
+        "year1_snapshots": [
+          0,
+          500000,
+          500000,
+          500000
+        ],
+        "year2_snapshots": [
+          1000,
+          1000,
+          0,
+          0
+        ],
+        "funding_failure": true,
+        "terminal_bank": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "units_ref": "units",
+      "tolerance_ref": "tolerances",
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-funding"
+    },
+    {
+      "id": "no_tax_zero_cost_isk_hold",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "strategy": "ISK_HOLD",
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "tax_mode": "none"
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "none",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "expected": {
+        "year1_tax": 0,
+        "year2_tax": 0,
+        "terminal_net_outcome": 100,
+        "external_funding": 0,
+        "fees_total": 0,
+        "price_pnl": 0,
+        "harvested": false,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-invariance",
+      "units_ref": "units",
+      "tolerance_ref": "tolerances"
+    },
+    {
+      "id": "no_tax_zero_cost_ad_hold",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "strategy": "AD_HOLD",
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "tax_mode": "none"
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "none",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "expected": {
+        "year1_tax": 0,
+        "year2_tax": 0,
+        "terminal_net_outcome": 100,
+        "external_funding": 0,
+        "fees_total": 0,
+        "price_pnl": 0,
+        "harvested": false,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-invariance",
+      "units_ref": "units",
+      "tolerance_ref": "tolerances"
+    },
+    {
+      "id": "no_tax_zero_cost_ad_harvest",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "strategy": "AD_HARVEST",
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "tax_mode": "none"
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "none",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "expected": {
+        "year1_tax": 0,
+        "year2_tax": 0,
+        "terminal_net_outcome": 100,
+        "external_funding": 0,
+        "fees_total": 0,
+        "price_pnl": 0,
+        "harvested": true,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-invariance",
+      "units_ref": "units",
+      "tolerance_ref": "tolerances"
+    },
+    {
+      "id": "no_tax_costly_harvest",
+      "prices": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "strategy": "AD_HARVEST",
+      "overrides": {
+        "initial_wealth_sek": 101,
+        "cost_per_leg": 0.01,
+        "tax_mode": "none",
+        "harvest_loss_threshold": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 101,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.01,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0,
+        "tax_mode": "none",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "expected": {
+        "year1_tax": 0,
+        "year2_tax": 0,
+        "terminal_net_outcome": 97.03960396039604,
+        "external_funding": 0,
+        "price_pnl": 0,
+        "fees_total": 3.960396039603964,
+        "harvested": true,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-invariance",
+      "units_ref": "units",
+      "tolerance_ref": "tolerances"
+    },
+    {
+      "id": "no_tax_costly_hold",
+      "prices": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "strategy": "AD_HOLD",
+      "overrides": {
+        "initial_wealth_sek": 101,
+        "cost_per_leg": 0.01,
+        "tax_mode": "none",
+        "harvest_loss_threshold": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 101,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.01,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0,
+        "tax_mode": "none",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "expected": {
+        "year1_tax": 0,
+        "year2_tax": 0,
+        "terminal_net_outcome": 99,
+        "external_funding": 0,
+        "price_pnl": 0,
+        "fees_total": 2,
+        "harvested": false,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-invariance",
+      "units_ref": "units",
+      "tolerance_ref": "tolerances"
+    },
+    {
+      "id": "rising_ad_hold",
+      "prices": [
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124
+      ],
+      "strategy": "AD_HOLD",
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "expected": {
+        "year1_tax": 0,
+        "year2_tax": 7.2,
+        "terminal_net_outcome": 116.8,
+        "external_funding": 0,
+        "price_pnl": 24,
+        "fees_total": 0,
+        "harvested": false,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-invariance",
+      "units_ref": "units",
+      "tolerance_ref": "tolerances"
+    },
+    {
+      "id": "rising_ad_harvest",
+      "prices": [
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124
+      ],
+      "strategy": "AD_HARVEST",
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "expected": {
+        "year1_tax": 0,
+        "year2_tax": 7.2,
+        "terminal_net_outcome": 116.8,
+        "external_funding": 0,
+        "price_pnl": 24,
+        "fees_total": 0,
+        "harvested": false,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-invariance",
+      "units_ref": "units",
+      "tolerance_ref": "tolerances"
+    },
+    {
+      "id": "flat_isk_100k",
+      "prices": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "strategy": "ISK_HOLD",
+      "overrides": {
+        "initial_wealth_sek": 100000,
+        "cost_per_leg": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 100000,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "expected": {
+        "year1_base": 100000,
+        "year2_base": 100000,
+        "year1_tax": 0,
+        "year2_tax": 0,
+        "terminal_net_outcome": 100000,
+        "external_funding": 0,
+        "price_pnl": 0,
+        "fees_total": 0,
+        "harvested": false,
+        "tax_due_months": [
+          18,
+          30
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-isk",
+      "units_ref": "units",
+      "tolerance_ref": "tolerances"
+    },
+    {
+      "id": "lower_price_path_lag0",
+      "prices": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        80.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "strategy": "AD_HARVEST",
+      "overrides": {
+        "initial_wealth_sek": 100,
+        "cost_per_leg": 0,
+        "settlement_lag_months": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 100,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 0,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      },
+      "initial_conditions": {
+        "empty_account_before_month0_deposit": true,
+        "shares": 0,
+        "actual_basis": 0,
+        "cash": 0,
+        "bank": 0,
+        "external_funding": 0
+      },
+      "expected": {
+        "year1_tax": -4.2,
+        "year2_tax": 6.315,
+        "shares_after_credit": 1.0525,
+        "basis_after_credit": 84.2,
+        "terminal_net_outcome": 98.935,
+        "external_funding": 0,
+        "price_pnl": 1.05,
+        "fees_total": 0,
+        "harvested": true,
+        "credit_receipts_months": [
+          12
+        ],
+        "tax_due_months": [
+          12,
+          24
+        ],
+        "assessed_months": [
+          12,
+          24
+        ],
+        "settled_records_after_runoff": 2,
+        "unsettled_records_after_runoff": 0,
+        "terminal_shares": 0,
+        "terminal_actual_basis": 0,
+        "terminal_account_cash": 0,
+        "trades_at_or_after_month25": 0,
+        "year3_isk_tax": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-reinvestment",
+      "units_ref": "units",
+      "tolerance_ref": "tolerances"
+    }
+  ],
+  "property_tests": [
+    {
+      "id": "resource_conservation",
+      "scope": "all full paths and all primary random paths",
+      "expected_acceptance_bounds": {
+        "max_normalized_identity_error": 1
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-identity",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "runoff_equivalence",
+      "scope": "all full paths and all primary random paths",
+      "expected_acceptance_bounds": {
+        "max_normalized_error": 1
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-identity",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "scalar_vector_agreement",
+      "scope": "all full fixtures and first 32 shared paths of every configuration",
+      "expected_acceptance_bounds": {
+        "max_normalized_error": 1,
+        "discrete_mismatches": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-validation",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "no_tax_general_equality",
+      "scope": "first 32 baseline paths with tax none and cost zero; all three arms",
+      "expected_acceptance_bounds": {
+        "max_pairwise_abs_W_difference_sek": 1e-06
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-invariance",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "state_and_event_invariants",
+      "scope": "all deterministic and primary paths",
+      "expected_acceptance_bounds": {
+        "nonfinite_values": 0,
+        "negative_asset_state_violations": 0,
+        "unsettled_records": 0,
+        "post_terminal_trades": 0,
+        "out_of_order_events": 0,
+        "unexpected_positive_ad_year1_taxes": 0
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-validation",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "variational_es_agreement",
+      "scope": "all empirical_es unit fixtures",
+      "expected_acceptance_bounds": {
+        "max_absolute_es_difference": 1e-12
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-es",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "return_moment_diagnostics",
+      "scope": "all nine distinct return parameter pairs",
+      "expected_acceptance_bounds": {
+        "max_absolute_standardized_discrepancy": 6
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-moments",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "baseline_repeat_seed",
+      "scope": "baseline N=20000 with seed20261015; no new reported scenario",
+      "expected_acceptance_bounds": {
+        "max_mean_difference_in_combined_standard_errors": 6
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-validation",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    },
+    {
+      "id": "configuration_integrity",
+      "scope": "package configuration",
+      "expected_acceptance_bounds": {
+        "unique_configurations": 19,
+        "strategies": 3,
+        "arm_configurations": 57,
+        "primary_paths": 20000,
+        "bootstrap_resamples": 2000
+      },
+      "reference": "../docs/MATHEMATICAL_MODEL.md#ref-validation",
+      "tolerance_ref": "tolerances",
+      "units_ref": "units"
+    }
+  ]
+}

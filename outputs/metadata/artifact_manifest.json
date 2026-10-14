@@ -1,0 +1,115 @@
+{
+  "description": "SHA-256 hashes of the files in this directory; they verify file integrity only.",
+  "files": [
+    {
+      "path": "figures/figure1_tax_and_lag.pdf",
+      "bytes": 29192,
+      "sha256": "3a2f83708b1af8a4df08ce16626b1972ba8161d08e4fcdb530537330bdc50804"
+    },
+    {
+      "path": "figures/figure1_tax_and_lag.png",
+      "bytes": 126070,
+      "sha256": "e422be1e8dc841097fc30330da538cca513fd5ed59ddf1fefbbb53c5167406df"
+    },
+    {
+      "path": "figures/figure2_paired_difference.pdf",
+      "bytes": 35688,
+      "sha256": "ba4bf3ba21195b268a5886c3cf91a8ea98aa1c3da5c578547d31f7c56c51460e"
+    },
+    {
+      "path": "figures/figure2_paired_difference.png",
+      "bytes": 112322,
+      "sha256": "48678256e9e7646211161d61f23669f71f72595627d32bfc88ab6c618042da4c"
+    },
+    {
+      "path": "figures/figure3_wealth_threshold.pdf",
+      "bytes": 33674,
+      "sha256": "3068162a223144be3d0f87faa11f8d922d7367f6d2789e6bed3af3fc32962c18"
+    },
+    {
+      "path": "figures/figure3_wealth_threshold.png",
+      "bytes": 155563,
+      "sha256": "9fd6970642fce03517ff6a9be69e1c47aa92a6fd2c553301cc303a6d3e060339"
+    },
+    {
+      "path": "figures/figure4_return_models.pdf",
+      "bytes": 29800,
+      "sha256": "ac7b03349e581e44fc028eefccb06a6088705906ff57f7fa9644661c44b1427c"
+    },
+    {
+      "path": "figures/figure4_return_models.png",
+      "bytes": 145313,
+      "sha256": "65962f4bce51990898624aecd2156d1663c16ab64ab71e3a03565c67779f298a"
+    },
+    {
+      "path": "metadata/run_metadata.json",
+      "bytes": 3359,
+      "sha256": "43da3ee4a8d681ba0fe98f17a46f95b47eada56523bf9cecf03c289efc146557"
+    },
+    {
+      "path": "note/research_appendix.pdf",
+      "bytes": 199899,
+      "sha256": "b547518eda1abd11725f9f1478db4c528608be68d3a4cb79f7692ea83a9a7f4c"
+    },
+    {
+      "path": "note/research_note.md",
+      "bytes": 23749,
+      "sha256": "3b7c1b59fc97f350b68d47998c8707e2f84b262f07f47186394e98c40af16a31"
+    },
+    {
+      "path": "note/research_note.pdf",
+      "bytes": 453782,
+      "sha256": "24a13ca999ccaaa3969dc761aaa0b59088228d7bbf5ba47b11719eb636288637"
+    },
+    {
+      "path": "supplementary/supplementary_contrasts.csv",
+      "bytes": 15077,
+      "sha256": "c9cc4625d3fd78cb57ed5e302dfd05f982b65e866b2d8a65afadff189aa95eb1"
+    },
+    {
+      "path": "supplementary/supplementary_metrics.csv",
+      "bytes": 10810,
+      "sha256": "5a9f525f8b9de56c38bee2bda48b852d1aec83c656626d8af5985e1c7002ad9f"
+    },
+    {
+      "path": "supplementary/table_s1_wealth_threshold.md",
+      "bytes": 2190,
+      "sha256": "9e257a4c32afd8c7bdba3e77ca56ea33a8d603637661915e0bf201116ff7d56d"
+    },
+    {
+      "path": "tables/contrasts.csv",
+      "bytes": 22462,
+      "sha256": "7a5785170f9412f113d4d2f45f4a3805967546adf1ce1055a7d60968633433f8"
+    },
+    {
+      "path": "tables/scenario_metrics.csv",
+      "bytes": 19722,
+      "sha256": "fa5e120bc451facb9d1d30f05089c1ef315cb7981738c66e1a94689bcc3c071e"
+    },
+    {
+      "path": "tables/table1_baseline.md",
+      "bytes": 1454,
+      "sha256": "1dad4189b782c01938838cd872e353dbbd005fe02f3b915bad4d8b036160bd39"
+    },
+    {
+      "path": "tables/table2_sensitivity.md",
+      "bytes": 1534,
+      "sha256": "c7a251ce3bda351f3bf09dcfed5f137def56491585c441f1ed1f8ea618ca6925"
+    },
+    {
+      "path": "validation/artifact_validation.json",
+      "bytes": 453,
+      "sha256": "dcab95ba779119c1105a5679129c65aa2d2c868646d6f4881193817cb3c1d4ed"
+    },
+    {
+      "path": "validation/test_results.json",
+      "bytes": 89,
+      "sha256": "0aa27dcf85d82aa0c51eb4e4326cdb98724ec3e905c0e01c768d3a3da314414b"
+    },
+    {
+      "path": "validation/validation_results.json",
+      "bytes": 222205,
+      "sha256": "69ac0ad31b41f2d151ab72a3048fa67a3206e4def2482b1519b762e62b13d7c5"
+    }
+  ]
+}

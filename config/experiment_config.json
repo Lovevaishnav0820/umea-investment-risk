@@ -1,0 +1,730 @@
+{
+  "config_schema_version": 1,
+  "description": "Study configuration for the Monte Carlo comparison of ISK holding, depå holding and one depå loss realization. Primary results use the 19 scenarios below; supplementary experiments are reported separately.",
+  "question": "Effect of one year-end loss realization on two-year expected net investment outcome and ES95; ISK as account comparator.",
+  "strategies": [
+    "ISK_HOLD",
+    "AD_HOLD",
+    "AD_HARVEST"
+  ],
+  "simulation": {
+    "paths": 20000,
+    "rng": "numpy.PCG64",
+    "seed": 20261012,
+    "normal_array_shape": [
+      20000,
+      24
+    ],
+    "dtype": "float64",
+    "common_random_numbers": true
+  },
+  "monte_carlo_intervals": {
+    "method": "paired_iid_path_bootstrap",
+    "resamples": 2000,
+    "seed": 20261013,
+    "confidence": 0.95,
+    "percentile_method": "linear",
+    "interpretation": "Numerical sampling error conditional on each specified model, not empirical forecasting uncertainty.",
+    "rng": "numpy.PCG64",
+    "reuse_indices_across_scenarios": true,
+    "index_shape": [
+      2000,
+      20000
+    ]
+  },
+  "metrics": {
+    "es_alpha": 0.95,
+    "loss_definition": "1 - net_investment_outcome / initial_wealth",
+    "crra_enabled": false,
+    "cara_enabled": false,
+    "annualization_enabled": false,
+    "negative_outcomes_retained": true
+  },
+  "baseline": {
+    "initial_wealth_sek": 500000.0,
+    "initial_price": 100.0,
+    "horizon_months": 24,
+    "annual_expected_simple_price_return": 0.06,
+    "annual_diffusion_volatility": 0.25,
+    "cost_per_leg": 0.001,
+    "harvest_month": 12,
+    "harvest_loss_threshold": 0.05,
+    "tax_mode": "sweden2026",
+    "settlement_lag_months": 6,
+    "credit_capacity_sek": null,
+    "allow_20pct_proceeds_deduction": true,
+    "isk_tax_rate": 0.01065,
+    "isk_allowance_sek": 300000.0,
+    "dividend_yield": 0.0,
+    "cash_interest_rate": 0.0,
+    "settlement_discount_rate": 0.0
+  },
+  "scenarios": [
+    {
+      "id": "baseline_sweden_lag6",
+      "overrides": {},
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "sweden_lag0",
+      "overrides": {
+        "settlement_lag_months": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 0,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "symmetric_lag6",
+      "overrides": {
+        "tax_mode": "symmetric30"
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "symmetric30",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "symmetric_lag0",
+      "overrides": {
+        "tax_mode": "symmetric30",
+        "settlement_lag_months": 0
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "symmetric30",
+        "settlement_lag_months": 0,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "grid_m03_sigma15",
+      "overrides": {
+        "annual_expected_simple_price_return": 0.03,
+        "annual_diffusion_volatility": 0.15
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.03,
+        "annual_diffusion_volatility": 0.15,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "grid_m03_sigma25",
+      "overrides": {
+        "annual_expected_simple_price_return": 0.03,
+        "annual_diffusion_volatility": 0.25
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.03,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "grid_m03_sigma35",
+      "overrides": {
+        "annual_expected_simple_price_return": 0.03,
+        "annual_diffusion_volatility": 0.35
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.03,
+        "annual_diffusion_volatility": 0.35,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "grid_m06_sigma15",
+      "overrides": {
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.15
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.15,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "grid_m06_sigma35",
+      "overrides": {
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.35
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.35,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "grid_m09_sigma15",
+      "overrides": {
+        "annual_expected_simple_price_return": 0.09,
+        "annual_diffusion_volatility": 0.15
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.09,
+        "annual_diffusion_volatility": 0.15,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "grid_m09_sigma25",
+      "overrides": {
+        "annual_expected_simple_price_return": 0.09,
+        "annual_diffusion_volatility": 0.25
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.09,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "grid_m09_sigma35",
+      "overrides": {
+        "annual_expected_simple_price_return": 0.09,
+        "annual_diffusion_volatility": 0.35
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.09,
+        "annual_diffusion_volatility": 0.35,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "cost_zero",
+      "overrides": {
+        "cost_per_leg": 0.0
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.0,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "cost_25bp",
+      "overrides": {
+        "cost_per_leg": 0.0025
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.0025,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "threshold_zero",
+      "overrides": {
+        "harvest_loss_threshold": 0.0
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.0,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "threshold_10pct",
+      "overrides": {
+        "harvest_loss_threshold": 0.1
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.1,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "initial_100k",
+      "overrides": {
+        "initial_wealth_sek": 100000.0
+      },
+      "parameters": {
+        "initial_wealth_sek": 100000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "no_credit_capacity",
+      "overrides": {
+        "credit_capacity_sek": 0.0
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 6,
+        "credit_capacity_sek": 0.0,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    },
+    {
+      "id": "sweden_lag12",
+      "overrides": {
+        "settlement_lag_months": 12
+      },
+      "parameters": {
+        "initial_wealth_sek": 500000.0,
+        "initial_price": 100.0,
+        "horizon_months": 24,
+        "annual_expected_simple_price_return": 0.06,
+        "annual_diffusion_volatility": 0.25,
+        "cost_per_leg": 0.001,
+        "harvest_month": 12,
+        "harvest_loss_threshold": 0.05,
+        "tax_mode": "sweden2026",
+        "settlement_lag_months": 12,
+        "credit_capacity_sek": null,
+        "allow_20pct_proceeds_deduction": true,
+        "isk_tax_rate": 0.01065,
+        "isk_allowance_sek": 300000.0,
+        "dividend_yield": 0.0,
+        "cash_interest_rate": 0.0,
+        "settlement_discount_rate": 0.0
+      }
+    }
+  ],
+  "scenario_count": 19,
+  "arm_scenario_count": 57,
+  "exclusions": [
+    "empirical_calibration",
+    "stationary_bootstrap",
+    "dividends",
+    "repeated_harvesting",
+    "policy_optimization",
+    "stochastic_future_tax_rates",
+    "portfolio_allocation",
+    "utility_ranking"
+  ],
+  "tax_constants": {
+    "capital_gains_rate": 0.3,
+    "residual_loss_deductible_fraction": 0.7,
+    "capital_deficit_threshold_sek": 100000.0,
+    "deficit_reduction_first_rate": 0.3,
+    "deficit_reduction_excess_rate": 0.21,
+    "alternative_sale_deduction_fraction": 0.2,
+    "symmetric_rate": 0.3,
+    "income_year_rules": 2026,
+    "capacity_resets_each_tax_year": true,
+    "rules_fixed_in_both_model_years": true
+  },
+  "validation": {
+    "repeat_seed": 20261015,
+    "repeat_baseline_only": true,
+    "repeat_paths": 20000,
+    "repeat_bootstrap_required": false,
+    "moment_check_max_standard_errors": 6.0,
+    "ledger_selection_seed": 20261014,
+    "ledger_sample_size": 6,
+    "scalar_vector_first_n_paths": 32,
+    "unit_money_atol_sek": 1e-08,
+    "path_money_atol_sek": 1e-06,
+    "relative_tolerance": 1e-10,
+    "dimensionless_atol": 1e-12,
+    "integer_tail_mass_snap_atol": 1e-10,
+    "outside_reported_configurations": true
+  },
+  "calendar": {
+    "opening_snapshot_months": [
+      1,
+      4,
+      7,
+      10,
+      13,
+      16,
+      19,
+      22
+    ],
+    "empty_initial_snapshot": true,
+    "assessment_months": [
+      12,
+      24
+    ],
+    "terminal_liquidation_month": 24,
+    "reinvest_credit_only_if_month_less_than": 24,
+    "allowed_settlement_lags_months": [
+      0,
+      6,
+      12
+    ]
+  },
+  "contrasts": [
+    {
+      "id": "harvest_minus_hold",
+      "a": "AD_HARVEST",
+      "b": "AD_HOLD",
+      "role": "primary"
+    },
+    {
+      "id": "harvest_minus_isk",
+      "a": "AD_HARVEST",
+      "b": "ISK_HOLD",
+      "role": "account_context"
+    },
+    {
+      "id": "hold_minus_isk",
+      "a": "AD_HOLD",
+      "b": "ISK_HOLD",
+      "role": "account_context"
+    }
+  ],
+  "parameter_units": {
+    "initial_wealth_sek": "SEK",
+    "initial_price": "SEK_per_share",
+    "horizon_months": "months",
+    "annual_expected_simple_price_return": "annual_expected_simple_fraction",
+    "annual_diffusion_volatility": "per_sqrt_year",
+    "cost_per_leg": "decimal_rate",
+    "harvest_month": "month_index",
+    "harvest_loss_threshold": "decimal_rate",
+    "tax_mode": "enum",
+    "settlement_lag_months": "months",
+    "credit_capacity_sek": "SEK",
+    "allow_20pct_proceeds_deduction": "boolean",
+    "isk_tax_rate": "decimal_rate",
+    "isk_allowance_sek": "SEK",
+    "dividend_yield": "per_year",
+    "cash_interest_rate": "per_year",
+    "settlement_discount_rate": "per_year"
+  },
+  "supplementary_experiments": {
+    "purpose": "Starting-wealth sweep and a counterfactual tax schedule, used to examine how the annual deficit threshold affects the tail comparison. Not part of the 19 primary configurations.",
+    "uses_primary_innovations": true,
+    "uses_primary_bootstrap_indices": true,
+    "paths": 20000,
+    "bootstrap_resamples": 2000,
+    "experiments": [
+      {
+        "id": "wealth_100k",
+        "role": "starting_wealth",
+        "label": "Swedish rules, W0 = 100,000 SEK",
+        "overrides": {
+          "initial_wealth_sek": 100000.0
+        }
+      },
+      {
+        "id": "wealth_200k",
+        "role": "starting_wealth",
+        "label": "Swedish rules, W0 = 200,000 SEK",
+        "overrides": {
+          "initial_wealth_sek": 200000.0
+        }
+      },
+      {
+        "id": "wealth_300k",
+        "role": "starting_wealth",
+        "label": "Swedish rules, W0 = 300,000 SEK",
+        "overrides": {
+          "initial_wealth_sek": 300000.0
+        }
+      },
+      {
+        "id": "wealth_400k",
+        "role": "starting_wealth",
+        "label": "Swedish rules, W0 = 400,000 SEK",
+        "overrides": {
+          "initial_wealth_sek": 400000.0
+        }
+      },
+      {
+        "id": "wealth_500k",
+        "role": "starting_wealth",
+        "label": "Swedish rules, W0 = 500,000 SEK",
+        "overrides": {
+          "initial_wealth_sek": 500000.0
+        }
+      },
+      {
+        "id": "wealth_750k",
+        "role": "starting_wealth",
+        "label": "Swedish rules, W0 = 750,000 SEK",
+        "overrides": {
+          "initial_wealth_sek": 750000.0
+        }
+      },
+      {
+        "id": "wealth_1000k",
+        "role": "starting_wealth",
+        "label": "Swedish rules, W0 = 1,000,000 SEK",
+        "overrides": {
+          "initial_wealth_sek": 1000000.0
+        }
+      },
+      {
+        "id": "wealth_2000k",
+        "role": "starting_wealth",
+        "label": "Swedish rules, W0 = 2,000,000 SEK",
+        "overrides": {
+          "initial_wealth_sek": 2000000.0
+        }
+      },
+      {
+        "id": "no_deficit_threshold_500k",
+        "role": "counterfactual_tax_schedule",
+        "label": "Counterfactual: constant 21% relief on residual losses (no 100,000 SEK deficit threshold), W0 = 500,000 SEK",
+        "overrides": {
+          "tax_mode": "sweden2026_no_deficit_threshold"
+        }
+      }
+    ]
+  }
+}

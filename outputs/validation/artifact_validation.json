@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "array_files_checked": 136,
+  "arrays_rehashed": 2531,
+  "primary_path_records": 1140000,
+  "arm_rows": 57,
+  "contrast_rows": 57,
+  "supplementary_arm_rows": 27,
+  "supplementary_contrast_rows": 27,
+  "fixture_ledgers": 19,
+  "diagnostic_ledgers": 342,
+  "chronological_ledger_rows": 12745,
+  "note_pages": 5,
+  "appendix_pages": 1,
+  "figures": 4,
+  "max_table_serialization_residual": 0.0,
+  "seconds": 10.766941863999818
+}
